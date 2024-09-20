@@ -2,7 +2,7 @@
 
 This is the code implementation of paper ***CorrectBench: Automatic Testbench Generation with Functional Self-Correction using LLMs for HDL Design***, which has been submitted to ***Design, Automation and Test in Europe Conference 2025***. 
 
-This open-sourced project contains the `code implementation` of *CorrectBench*, the `dataset` (see json files in [`data/HDLBits`](data/HDLBits), the dataset is extended from HDLBits data) and the `experimental results` (see the following google drive link) referred in paper Section IV Experimental results. Due to the large size, the experimental results are uploaded to [google drive](https://drive.google.com/drive/folders/1EhG9Ch4vDzMtOsDvoiHthU0OWsZP1xRh?usp=sharing).
+This open-sourced project contains the `code implementation` of *CorrectBench*, the `dataset` (see json files in [`data/HDLBits`](data/HDLBits), the dataset is extended from HDLBits data) and the `experimental results` (see the following google drive link) referred in paper Section IV Experimental results. Due to the large size, the experimental results are uploaded to [google drive](https://drive.google.com/drive/folders/1ldVzdAKC4HQb10ez0aUasNevWnTP5RRc?usp=sharing).
 
 ![image](CorrectBench_Workflow.svg) 
 
@@ -104,6 +104,8 @@ For other configuration items, please see [default.yaml](config/default.yaml). I
 - The circuit_type file in data/HDLBits is only for reference but not used in our work. In CorrectBench workflow, the circuit type of each task is discriminated in Stage 0.
 
 - During its development phase, the validator is also called "discriminator", so you will see a lot of "disc" in our codes, which represent discrimination.
+
+- Experimental results: When running the expriments, due to some unstability reason, the program crashed. In this case, we will restart the program from the crashed task. Thus you will see for some experiments dir, there are more than 1 log.
 
 ## License
 
