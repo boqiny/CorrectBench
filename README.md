@@ -46,7 +46,7 @@ If your CPU is heavily occupied or very inefficient, consider enlarging the valu
 
 ## Running
 
-This project's config is stored in YAML files under [`/config`](config). You have multiple options to run this project.
+This project's config is stored in YAML files under [`/config`](config). You have multiple options to run this project. In addition, a demo has already been generated for your quick check in [`demo`](demo).
 
 ### Run by preset configs
 
