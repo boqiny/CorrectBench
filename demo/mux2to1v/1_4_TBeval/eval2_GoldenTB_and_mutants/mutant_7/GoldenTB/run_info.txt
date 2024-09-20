@@ -1,0 +1,21 @@
+iverilog simulation passed!
+
+iverilog cmd 1:
+~/bin/bin/iverilog -g2012 -o run.vvp mux2to1v_tb.v mux2to1v.v 
+iverilog cmd 1 output:
+
+iverilog cmd 1 error:
+
+iverilog cmd 2:
+~/bin/bin/vvp run.vvp
+iverilog cmd 2 output:
+VCD info: dumpfile wave.vcd opened for output.
+mux2to1v_tb.v:49: $finish called at 570 (1ps)
+Hint: Output 'out' has 57 mismatches. First mismatch occurred at time 5.
+Hint: Total mismatched samples is 57 out of 114 samples
+
+Simulation finished at 570 ps
+Mismatches: 57 in 114 samples
+
+iverilog cmd 2 error:
+

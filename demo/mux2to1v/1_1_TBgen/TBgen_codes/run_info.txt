@@ -1,0 +1,24 @@
+iverilog simulation failed!
+
+iverilog cmd 1:
+~/bin/bin/iverilog -g2012 -o run.vvp mux2to1v_tb.v mux2to1v.v 
+iverilog cmd 1 output:
+
+iverilog cmd 1 error:
+mux2to1v_tb.v:46: syntax error
+mux2to1v_tb.v:46: error: Syntax error between internal '}' and closing '}' of repeat concatenation.
+mux2to1v_tb.v:46: syntax error
+mux2to1v_tb.v:46: error: Malformed statement
+mux2to1v_tb.v:47: syntax error
+mux2to1v_tb.v:47: error: Syntax error between internal '}' and closing '}' of repeat concatenation.
+mux2to1v_tb.v:47: syntax error
+mux2to1v_tb.v:47: error: Malformed statement
+mux2to1v_tb.v:77: syntax error
+mux2to1v_tb.v:77: error: Syntax error between internal '}' and closing '}' of repeat concatenation.
+mux2to1v_tb.v:77: syntax error
+mux2to1v_tb.v:77: error: Malformed statement
+mux2to1v_tb.v:78: syntax error
+mux2to1v_tb.v:78: error: Syntax error between internal '}' and closing '}' of repeat concatenation.
+mux2to1v_tb.v:78: syntax error
+mux2to1v_tb.v:78: error: Malformed statement
+

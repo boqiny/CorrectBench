@@ -1,0 +1,260 @@
+
+---------------custom config--------------
+run: 
+    mode: autoline
+save: 
+    en: True
+    pub: 
+        prefix: demo
+        subdir: demo
+    log: 
+        debug_en: False
+gpt: 
+    model: gpt-4o-2024-08-06
+    rtlgen_model: gpt-4o-2024-08-06
+autoline: 
+    probset: 
+        path: data/HDLBits/HDLBits_data.jsonl
+        mutant_path: data/HDLBits/HDLBits_data_mutants.jsonl
+        more_info_paths: ['data/HDLBits/HDLBits_data_RTL_4o_20.jsonl']
+        only: ['mux2to1v']
+    promptscript: pychecker
+    timeout: 40
+    save_compile: True
+    debug: 
+        max: 3
+    itermax: 10
+    update_desc: False
+    TBcheck: 
+        discrim_mode: col_70_wrong_row_25_correct
+------------------------------------------
+------config info (custom + default)------
+run: 
+    version: 2.0
+    author: Ruidi Qiu - Technical University of Munich
+    time: 20240919_234645
+    custom_path: config/configs/demo.yaml
+    mode: autoline
+    hostname: gpu19
+    pid: 4099531
+    pyversion: 3.12.4 (main, Jul 19 2024, 12:41:31) [GCC 9.4.0]
+save: 
+    en: True
+    root: saves/0916~0922/demo/demo_20240919_234645/
+    pub: 
+        prefix: demo
+        dir: saves/0916~0922/
+        subdir: demo/
+    log: 
+        en: True
+        dir: logs/
+        notes: None
+        cfg_pmode: iwantall
+        debug_en: False
+        level: TRACE
+    message: 
+        en: True
+        dir: messages/
+        format: json
+    iverilog: 
+        en: True
+        subdir: ivcode_nodebug
+load: 
+    prompt: 
+        path: config/initial_prompts/prompt1.txt
+        pick_idx: []
+    stage_template: 
+        path: config/templates/stage_template0301.txt
+gpt: 
+    model: gpt-4o-2024-08-06
+    key_path: config/key_API.json
+    temperature: None
+    json_mode: False
+    chatgpt: 
+        start_form: chat
+        one_time_talk: False
+    rtlgen_model: gpt-4o-2024-08-06
+iverilog: 
+    dir: 
+    task_id: 
+autoline: 
+    probset: 
+        path: data/HDLBits/HDLBits_data.jsonl
+        mutant_path: data/HDLBits/HDLBits_data_mutants.jsonl
+        gptgenRTL_path: None
+        more_info_paths: ['data/HDLBits/HDLBits_data_RTL_4o_20.jsonl']
+        only: ['mux2to1v']
+        exclude: []
+        exclude_json: None
+        filter: [{}]
+    checklist: 
+        max: 3
+    debug: 
+        max: 3
+        reboot: 1
+        py_rollback: 2
+    onlyrun: None
+    promptscript: pychecker
+    timeout: 40
+    TBcheck: 
+        rtl_num: 20
+        correct_max: 3
+        discrim_mode: col_70_wrong_row_25_correct
+        correct_mode: naive
+        rtl_compens_en: True
+        rtl_compens_max_iter: 3
+    itermax: 10
+    update_desc: False
+    save_compile: True
+    save_finalcodes: True
+    error_interruption: False
+_initialized: True
+------------------------------------------
+
+--------------default config--------------
+run: 
+    version: 2.0
+    author: Ruidi Qiu - Technical University of Munich
+    time: None
+    custom_path: None
+    mode: chatgpt
+save: 
+    en: True
+    root: None
+    pub: 
+        prefix: None
+        dir: saves/$weekrange$/
+        subdir: 
+    log: 
+        en: True
+        dir: logs/
+        notes: None
+        cfg_pmode: iwantall
+        debug_en: False
+        level: TRACE
+    message: 
+        en: True
+        dir: messages/
+        format: json
+    iverilog: 
+        en: True
+        subdir: ivcode_nodebug
+load: 
+    prompt: 
+        path: config/initial_prompts/prompt1.txt
+        pick_idx: []
+    stage_template: 
+        path: config/templates/stage_template0301.txt
+gpt: 
+    model: 4o
+    key_path: config/key_API.json
+    temperature: None
+    json_mode: False
+    chatgpt: 
+        start_form: chat
+        one_time_talk: False
+    rtlgen_model: None
+iverilog: 
+    dir: 
+    task_id: 
+autoline: 
+    probset: 
+        path: None
+        mutant_path: None
+        gptgenRTL_path: None
+        more_info_paths: []
+        only: []
+        exclude: []
+        exclude_json: None
+        filter: [{}]
+    checklist: 
+        max: 3
+    debug: 
+        max: 5
+        reboot: 1
+        py_rollback: 2
+    onlyrun: None
+    promptscript: None
+    timeout: 60
+    TBcheck: 
+        rtl_num: 20
+        correct_max: 3
+        discrim_mode: col_full_wrong
+        correct_mode: naive
+        rtl_compens_en: True
+        rtl_compens_max_iter: 3
+    itermax: 10
+    update_desc: False
+    save_compile: True
+    save_finalcodes: True
+    error_interruption: False
+------------------------------------------
+2024-09-19 23:46:45 | INFO     | all configurations are loaded, starting the main process...
+2024-09-19 23:46:45 | INFO     | 
+2024-09-19 23:46:45 | INFO     | ######################### task 1/1 [mux2to1v] #########################
+2024-09-19 23:46:46 | INFO     | [mux2to1v] [TBgen] stage_0 ends (0.88s used)
+2024-09-19 23:46:49 | INFO     | [mux2to1v] [TBgen] stage_1 ends (3.76s used)
+2024-09-19 23:47:03 | INFO     | [mux2to1v] [TBgen] stage_2 ends (13.80s used)
+2024-09-19 23:47:10 | INFO     | [mux2to1v] [TBgen] stage_3 ends (7.07s used)
+2024-09-19 23:48:07 | INFO     | [mux2to1v] [TBgen] stage_4 ends (56.64s used)
+2024-09-19 23:48:33 | INFO     | [mux2to1v] [TBgen] stage_checklist ends (25.99s used)
+2024-09-19 23:48:39 | INFO     | [mux2to1v] [TBgen] stage_5 ends (5.97s used)
+2024-09-19 23:48:39 | INFO     | [mux2to1v] 
+2024-09-19 23:48:39 | INFO     | [mux2to1v] [TBsim] iverilog simulation failed! Debuging... (debug_iter = 1)
+2024-09-19 23:49:05 | INFO     | [mux2to1v] [TBsim] verilog iter - 1/3, total - 1/6: verilog DEBUG finished (25.87s used)
+2024-09-19 23:49:05 | INFO     | [mux2to1v] [TBsim] iverilog simulation failed! Rebooting... (debug_iter = 2)
+2024-09-19 23:49:55 | INFO     | [mux2to1v] [TBsim] stage_4 ends (49.72s used)
+2024-09-19 23:49:55 | INFO     | [mux2to1v] [TBsim] stage_checklist ends (0.00s used)
+2024-09-19 23:50:35 | INFO     | [mux2to1v] [TBsim] verilog iter - 2/3, total - 2/6: verilog REBOOT finished (89.88s used)
+2024-09-19 23:50:35 | INFO     | [mux2to1v] [TBsim] iverilog simulation failed! Debuging... (debug_iter = 3)
+2024-09-19 23:50:57 | INFO     | [mux2to1v] [TBsim] verilog iter - 3/3, total - 3/6: verilog DEBUG finished (22.01s used)
+2024-09-19 23:50:57 | INFO     | [mux2to1v] [TBsim] iverilog compilation : passed!
+2024-09-19 23:50:57 | INFO     | [mux2to1v] [TBsim] python simulation : passed!
+2024-09-19 23:50:57 | INFO     | [mux2to1v] [TBsim] TBsim finished : True!
+2024-09-19 23:50:57 | INFO     | [mux2to1v] 
+2024-09-19 23:50:57 | INFO     | [mux2to1v] [TBcheck] [discriminator] Discriminating the testbench, NO.0 discrimination
+2024-09-19 23:51:00 | POSITIVE | [mux2to1v] [TBcheck] [discriminator] TB_discriminating finished, TB passed, wrong scenarios: [], scenario pass ratio: 13/13
+2024-09-19 23:51:00 | INFO     | [mux2to1v] [TBcheck] Testbench passed the funccheck
+2024-09-19 23:51:00 | INFO     | [mux2to1v] [TBcheck] self funccheck finished. Next Action: [pass]
+2024-09-19 23:51:00 | INFO     | [mux2to1v] 
+2024-09-19 23:51:00 | INFO     | [mux2to1v] [TBeval] Eval 1: Golden RTL checking begins
+2024-09-19 23:51:00 | POSITIVE | [mux2to1v] [TBeval] Eval 1: Golden RTL checking passed!
+2024-09-19 23:51:00 | INFO     | [mux2to1v] [TBeval] Eval 2: Golden TB checking on RTL mutants
+2024-09-19 23:51:02 | SUCCESS  | [mux2to1v] [TBeval] Eval 2: Golden TB checking on RTL mutants perfectly passed!
+2024-09-19 23:51:02 | INFO     | [mux2to1v] 
+2024-09-19 23:51:02 | INFO     | 
+########## Analyze of Chatbench_RunInfo ##########
+
+#### pass numbers:
+Eval2 : 1
+Eval1 : 1
+Eval0 : 1
+total : 1 (Failed: 0)
+passed TB by autoline reboot action (from TB3_check): 0
+
+passed TB by functional corrector: 0
+
+#### tokens and cost:
+average prompt tokens: 13581
+average completion tokens: 9969
+total cost: 0.1336
+average cost: 0.1336
+
+#### time:
+average time: 257.39s
+
+#### debug info table:
+FUNCTIONAL debug info table:
+(debugged here means functional debugging)
+         | un-func-debugged | func-debugged | total |
+failed   |                0 |             0 |     0 |
+Eval0    |                1 |             0 |     1 |
+Eval1    |                1 |             0 |     1 |
+Eval2    |                1 |             0 |     1 |
+
+#### Eval2 ratio:
+mux2to1v: 10/10
+
+loose Eval2 pass metric applied: 0.8
+
+

@@ -1,0 +1,60 @@
+############################## conversation begin ##############################
+########## system ##########
+You are the strongest AI in the world. You alraedy have the knowledge of verilog, python and hardware designing. Do not save words by discarding information. I will tip you 200$ if you can fullfill the tasks I give you.
+
+########## user ##########
+1. Your task is to write a verilog testbench for an verilog RTL module code (we call it as "DUT", device under test). The infomation we have is the problem description that guides student to write the RTL code (DUT) and the header of the "DUT". Our target is to generate the verilog testbench for the DUT. This testbench can check if the DUT in verilog satisfies all technical requirements of the problem description.
+2. you are in section 2. in this section, please give me the test scenarios. you only need to describe the stimulus in each test scenarios. If time is important, please inform the clock cycle information. we will use the stimulus description to generate the test vectors and send them to DUT. you must not tell the expected results even though you know that. 
+3. your information is:
+RTL circuit problem description:
+Create a 2-1 multiplexer. When sel=0, choose a. When sel=1, choose b.
+RTL testbench specification:
+{
+  "important data": "",
+  "technical specifications": [
+    "1. The DUT is a 2-1 multiplexer module.",
+    "2. The module header specifies the inputs and outputs as follows:",
+    "   - Input: 'a' which is a 100-bit vector.",
+    "   - Input: 'b' which is a 100-bit vector.",
+    "   - Input: 'sel' which is a 1-bit selector.",
+    "   - Output: 'out' which is a 100-bit vector.",
+    "3. Functional requirement: When 'sel' is 0, 'out' should reflect the value of 'a'. When 'sel' is 1, 'out' should reflect the value of 'b'."
+  ]
+}
+DUT header:
+module top_module (
+	input [99:0] a,
+	input [99:0] b,
+	input sel,
+	output [99:0] out
+);
+
+
+you only need to describe the stimulus in each test scenarios. If time is important, please inform the clock cycle information. we will use the stimulus description to generate the test vectors and send them to DUT. you must not tell the expected results even though you know that. 
+
+your response must be in JSON form. example:
+{
+  "scenario 1": "...", # each content is a string
+  "scenario 2": "...",
+  "scenario 3": "...",
+  ...
+}
+
+
+########## assistant ##########
+{
+  "scenario 1": "Set sel=0, apply all zeros to both a and b.",
+  "scenario 2": "Set sel=0, apply all ones to a and all zeros to b.",
+  "scenario 3": "Set sel=0, apply alternating 1s and 0s starting with 1 to a, and apply alternating 0s and 1s starting with 0 to b.",
+  "scenario 4": "Set sel=0, apply a random 100-bit pattern to a and a different random 100-bit pattern to b.",
+  "scenario 5": "Set sel=0, apply a pattern where the first half of a is all 1s and the second half is all 0s, do the reverse pattern for b.",
+  "scenario 6": "Set sel=1, apply all zeros to both a and b.",
+  "scenario 7": "Set sel=1, apply all zeros to a and all ones to b.",
+  "scenario 8": "Set sel=1, apply alternating 1s and 0s starting with 0 to a, and apply alternating 0s and 1s starting with 1 to b.",
+  "scenario 9": "Set sel=1, apply a random 100-bit pattern to a and a different random 100-bit pattern to b.",
+  "scenario 10": "Set sel=1, apply a pattern where the first half of a is all 0s and the second half is all 1s, do the reverse pattern for b.",
+  "scenario 11": "Change sel from 0 to 1 and back to 0 during consecutive clock cycles while maintaining static inputs a and b.",
+  "scenario 12": "Change sel from 1 to 0 and back to 1 during consecutive clock cycles with static inputs a and b.",
+  "scenario 13": "Rapidly toggle sel between 0 and 1 for several consecutive clock cycles with random inputs a and b."
+}
+

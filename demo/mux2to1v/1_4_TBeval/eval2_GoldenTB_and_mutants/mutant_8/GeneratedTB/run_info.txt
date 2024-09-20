@@ -1,0 +1,15 @@
+iverilog simulation passed!
+
+iverilog cmd 1:
+~/bin/bin/iverilog -g2012 -o run.vvp mux2to1v_tb.v mux2to1v.v 
+iverilog cmd 1 output:
+
+iverilog cmd 1 error:
+
+iverilog cmd 2:
+~/bin/bin/vvp run.vvp
+iverilog cmd 2 output:
+mux2to1v_tb.v:126: $finish called at 260000 (1ps)
+
+iverilog cmd 2 error:
+
