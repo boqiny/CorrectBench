@@ -46,7 +46,7 @@ If your CPU is heavily occupied or very inefficient, consider enlarging the valu
 
 ## Running
 
-This project's config is stored in YAML files under [`/config`](config). You have multiple options to run this project. In addition, a demo has already been generated for your quick check in [`demo`](demo). This demo is also mentioned by fig.5 in our paper.
+This project's config is stored in YAML files under [`/config`](config). You have multiple options to run this project. In addition, a demo has already been generated for your quick check in [`demo`](demo). **This demo is also mentioned by fig.5 in our paper.**
 
 ### Run by preset configs
 
@@ -54,7 +54,7 @@ We provided 1 demo for a quick start, you can access them via args:
 
 - quick start single-task demo: `python main.py -c demo`
 
-There are also other full-task preset configs to run the experiments mentioned in the paper. You can check these configs in [`config/configs`](config/configs). If you want to run them, you use the command `python main.py -c` + the config name you want to run. For instance, if you want to run CorrectBench's main experiment in the Section IV-B, you should run the config *config/configs/correctbench.yaml*, then the command will be: `python main.py -c correctbench`.
+There are also other full-task preset configs to run the experiments mentioned in the paper. You can check these configs in [`config/configs`](config/configs). If you want to run them, you use the command `python main.py -c` + the config name you want to run. For instance, if you want to run CorrectBench's main experiment in **paper Section IV-B**, you should run the config *config/configs/correctbench.yaml*, then the command will be: `python main.py -c correctbench`.
 
 Here are some experiments and the corresponding command. 
 
@@ -71,7 +71,7 @@ We already run one demo in [saves/test](saves/test).
 
 ### Run by customized configures
 
-You can change the config file in [`config/custom.yaml`](config/custom.yaml) to customized your running. Here are explanations for some settings:
+You can change the config file at [`config/custom.yaml`](config/custom.yaml) to customized your running. In this way, your command will simply be `python main.py`. Here are explanations for some settings:
 
 - `-save-pub-prefix/subdir/dir`: the saving path of log and results. The saving path will be `dir` + `subdir` + `prefix`.
 
