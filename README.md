@@ -1,13 +1,22 @@
-# CorrectBench
+# CorrectBench (AutoBench 2.0)
 
-This is the code implementation of paper ***CorrectBench: Automatic Testbench Generation with Functional Self-Correction using LLMs for HDL Design***, which has been submitted to ***Design, Automation and Test in Europe Conference 2025***. 
+This is the code implementation of paper ***CorrectBench: Automatic Testbench Generation with Functional Self-Correction using LLMs for HDL Design***, which has been accepted by ***Design, Automation and Test in Europe Conference 2025*** as regular paper. 
 
 This open-sourced project contains the `code implementation` of *CorrectBench*, the `dataset` (see json files in [`data/HDLBits`](data/HDLBits), the dataset is extended from HDLBits data) and the `experimental results` (see the following google drive link) referred in paper Section IV Experimental results. Due to the large size, the experimental results are uploaded to [google drive](https://drive.google.com/drive/folders/1ldVzdAKC4HQb10ez0aUasNevWnTP5RRc?usp=sharing).
 
 ![image](CorrectBench_Workflow.svg) 
 
+## Authors
+
+ - [Ruidi **Qiu**](https://www.ce.cit.tum.de/eda/personen/ruidi-qiu/), Technical University of Munich, r.qiu@tum.de 
+ - [Grace Li **Zhang**](https://www.etit.tu-darmstadt.de/fachbereich/professuren_etit/etit_prof_details_121280.en.jsp), TU Darmstadt, grace.zhang@tu-darmstadt.de
+ - [Rolf **Drechsler**](https://www.rolfdrechsler.de/), University of Bremen, drechsler@uni-bremen.de
+ - [Ulf **Schlichtmann**](https://www.ce.cit.tum.de/eda/personen/ulf-schlichtmann/), Technical University of Munich, ulf.schlichtmann@tum.de
+ - [Bing **Li**](https://www.eti.uni-siegen.de/dis/mitarbeiter), University of Siegen, bing.li@uni-siegen.de
+
 ## What is CorretBench
-CorrectBench is the first framework for automatic testbench generation that incorporates functional self-validation and self-correction. Our framework utilizes the design specification (SPEC) of the device under test (DUT) in natural language as the sole input, as illustrated above, while expanding the boundaries of current testbench generation methods. CorrectBench improved the generated testbench pass ratio to 70.13%, compared with other work’s 52.18% and baseline’s 33.33%
+*CorrectBench* is the first framework for automatic testbench generation that incorporates *functional self-validation* and *self-correction*. It is the next generation of [AutoBench](https://github.com/AutoBench/AutoBench). Our framework utilizes the design specification (SPEC) of the device under test (DUT) in natural language as the sole input, as illustrated above, while expanding the boundaries of current testbench generation methods. CorrectBench improved the generated testbench pass ratio to 70.13%, compared with AutoBench’s 52.18% and baseline’s 33.33%.
+
 ## Setup
 
 ### Software
