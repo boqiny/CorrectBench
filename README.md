@@ -116,6 +116,19 @@ For other configuration items, please see [default.yaml](config/default.yaml). I
 
 - Experimental results: When running the expriments, due to some unstability reason, the program crashed. In this case, we will restart the program from the crashed task. Thus you will see for some experiments dir, there are more than 1 log.
 
+## Reference
+
+```
+@misc{qiu2024correctbenchautomatictestbenchgeneration,
+      title={{CorrectBench: Automatic Testbench Generation with Functional Self-Correction using LLMs for HDL Design}}, 
+      author={Ruidi Qiu and Grace Li Zhang and Rolf Drechsler and Ulf Schlichtmann and Bing Li},
+      year={2024},
+      eprint={2411.08510},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2411.08510}, 
+}
+```
 ## License
 
 This project is licensed under the GNU General Public License (GPL), a free software license that aims to protect user freedoms. Under the GPL, you are free to use, modify, and distribute this software, but you must share any modifications under the same license.
