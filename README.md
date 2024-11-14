@@ -116,6 +116,10 @@ For other configuration items, please see [default.yaml](config/default.yaml). I
 
 - Experimental results: When running the expriments, due to some unstability reason, the program crashed. In this case, we will restart the program from the crashed task. Thus you will see for some experiments dir, there are more than 1 log.
 
+## License
+
+This project is licensed under the GNU General Public License (GPL), a free software license that aims to protect user freedoms. Under the GPL, you are free to use, modify, and distribute this software, but you must share any modifications under the same license.
+
 ## Reference
 
 ```
@@ -129,7 +133,3 @@ For other configuration items, please see [default.yaml](config/default.yaml). I
       url={https://arxiv.org/abs/2411.08510}, 
 }
 ```
-## License
-
-This project is licensed under the GNU General Public License (GPL), a free software license that aims to protect user freedoms. Under the GPL, you are free to use, modify, and distribute this software, but you must share any modifications under the same license.
-
