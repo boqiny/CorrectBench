@@ -1,10 +1,14 @@
 # CorrectBench (AutoBench 2.0)
 
+![image](https://img.shields.io/github/license/AutoBench/AutoBench.svg) [![arXiv](https://img.shields.io/badge/arXiv-2411.08510-b31b1b.svg?style=flat)](https://arxiv.org/abs/2411.08510)
+
+<img src="figs/DATE2024_logo_blue_flat.png" width="13%" align=right>
+
 This is the code implementation of paper ***CorrectBench: Automatic Testbench Generation with Functional Self-Correction using LLMs for HDL Design***, which has been accepted by ***Design, Automation and Test in Europe Conference 2025*** as regular paper. 
 
 This open-sourced project contains the `code implementation` of *CorrectBench*, the `dataset` (see json files in [`data/HDLBits`](data/HDLBits), the dataset is extended from HDLBits data) and the `experimental results` (see the following google drive link) referred in paper Section IV Experimental results. Due to the large size, the experimental results are uploaded to [google drive](https://drive.google.com/drive/folders/1ldVzdAKC4HQb10ez0aUasNevWnTP5RRc?usp=sharing).
 
-![image](CorrectBench_Workflow.svg) 
+<img src="figs/CorrectBench_Workflow.svg" width="100%">
 
 ## Authors
 
