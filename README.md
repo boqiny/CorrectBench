@@ -5,6 +5,7 @@
 <img src="figs/DATE2024_logo_blue_flat.png" width="13%" align=right>
 
 This is the code implementation of paper ***CorrectBench: Automatic Testbench Generation with Functional Self-Correction using LLMs for HDL Design***, which has been accepted by ***Design, Automation and Test in Europe Conference 2025*** as regular paper. 
+This is the code implementation of paper [***CorrectBench: Automatic Testbench Generation with Functional Self-Correction using LLMs for HDL Design***](https://arxiv.org/abs/2411.08510), which has been accepted by [***Design, Automation and Test in Europe Conference 2025***](https://www.date-conference.com/) as regular paper. This is the next generation of [AutoBench](https://github.com/AutoBench/AutoBench).
 
 This open-sourced project contains the `code implementation` of *CorrectBench*, the `dataset` (see json files in [`data/HDLBits`](data/HDLBits), the dataset is extended from HDLBits data) and the `experimental results` (see the following google drive link) referred in paper Section IV Experimental results. Due to the large size, the experimental results are uploaded to [google drive](https://drive.google.com/drive/folders/1ldVzdAKC4HQb10ez0aUasNevWnTP5RRc?usp=sharing).
 
@@ -124,3 +125,16 @@ For other configuration items, please see [default.yaml](config/default.yaml). I
 
 This project is licensed under the GNU General Public License (GPL), a free software license that aims to protect user freedoms. Under the GPL, you are free to use, modify, and distribute this software, but you must share any modifications under the same license.
 
+## Reference
+
+```
+@misc{qiu2024correctbenchautomatictestbenchgeneration,
+      title={{CorrectBench: Automatic Testbench Generation with Functional Self-Correction using LLMs for HDL Design}}, 
+      author={Ruidi Qiu and Grace Li Zhang and Rolf Drechsler and Ulf Schlichtmann and Bing Li},
+      year={2024},
+      eprint={2411.08510},
+      archivePrefix={arXiv},
+      primaryClass={cs.SE},
+      url={https://arxiv.org/abs/2411.08510}, 
+}
+```
