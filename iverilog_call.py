@@ -2,22 +2,23 @@
 Description :   This file is related to iverilog calling. Some codes are modified from autosim.py v0.2 by Rain Bellinsky.
 Author      :   Ruidi Qiu (r.qiu@tum.de)
 Time        :   2023/12/9 23:22:51
-LastEdited  :   2024/8/11 17:31:42
+LastEdited  :   2024/11/29 16:45:24
 """
 
 import os
 import sys
 from utils.utils import run_in_dir
 from utils.subproc import subproc_call
-from config import Config
 
 if os.name == 'nt':
     IC = '\\' # IC: Iterval Character
 else:
     IC = '/'
 
-RUN_DIR = "ipynb_demo/error_analysis/1399/RTL_1"
-# RUN_TASK_ID = "rule110"
+RUN_DIR = "ipynb_demo/verilog_test/" # this is only used when directly run this file
+
+IVERILOG_PATH = "~/bin/bin/iverilog"
+IVERILOG_VVP_PATH = "~/bin/bin/vvp"
 
 def iverilog_call(dir, silent = False, timeout = 120):
     """
@@ -52,14 +53,14 @@ def iverilog_call(dir, silent = False, timeout = 120):
     # vvp_filename = "%s.vvp"%(task_id)
     vvp_filename = "run.vvp"
     # cmd1 = "iverilog -g2012 -o %s %s"%(vvp_filename, vlist_str) # used to be vvp_path
-    cmd1 = "~/bin/bin/iverilog -g2012 -o %s %s"%(vvp_filename, vlist_str) # used to be vvp_path
+    cmd1 = "%s -g2012 -o %s %s"%(IVERILOG_PATH, vvp_filename, vlist_str) # used to be vvp_path
     s_print(cmd1)
     with run_in_dir(dir):
         run1_info = subproc_call(cmd1, timeout) # {"out": out_reg, "err": err_reg, "haserror": error_exist}
     if run1_info["haserror"]:
         s_print("iverilog compiling failed")
         return [False, cmd1, run1_info, None, None, run1_info["err"]]
-    cmd2 = "~/bin/bin/vvp %s"%(vvp_filename) # used to be vvp_path
+    cmd2 = "%s %s"%(IVERILOG_VVP_PATH, vvp_filename) # used to be vvp_path
     s_print(cmd2)
     with run_in_dir(dir):
         run2_info = subproc_call(cmd2, timeout)
@@ -68,11 +69,11 @@ def iverilog_call(dir, silent = False, timeout = 120):
         return [False, cmd1, run1_info, cmd2, run2_info, run2_info["err"]]
     return [True, cmd1, run1_info, cmd2, run2_info, '']
 
-def save_iv_runinfo(ivrun_info, dir:str):
+def save_iv_runinfo(ivrun_info, dir):
     """
     save the run info of iverilog to dir
     """
-    run_info_path = os.path.join(dir, "run_info.txt")
+    run_info_path = dir + "run_info.txt"
     lines = ""
     if ivrun_info[0]:
         lines += "iverilog simulation passed!\n\n"
@@ -128,11 +129,10 @@ def vList_gen(dir):
         f.writelines(filelist)
     return {"path": file_path, "data": filelist}
 
-def run_iverilog():
+def run_iverilog(config):
     """
     for main.py to directly call.
     """
-    config = Config()
     iverilog_call(config.iverilog.dir)
 
 def main(dir=None):
