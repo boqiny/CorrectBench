@@ -25,7 +25,7 @@ This open-sourced project contains the `code implementation` of *CorrectBench*, 
 
 ### Software
 
-- Python 3.8 or newer.
+- Python 3.12 or newer.
 
 - The latest version of Icarus Verilog (totally supports ***IEEE Std 1800-2012***). (don't fogget to modify the bin path of iverilog in [iverilog_call.py](iverilog_call.py))
 
