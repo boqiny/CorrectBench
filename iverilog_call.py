@@ -2,7 +2,7 @@
 Description :   This file is related to iverilog calling. Some codes are modified from autosim.py v0.2 by Rain Bellinsky.
 Author      :   Ruidi Qiu (r.qiu@tum.de)
 Time        :   2023/12/9 23:22:51
-LastEdited  :   2024/11/29 16:45:24
+LastEdited  :   2025/2/22 16:13:21
 """
 
 import os
@@ -73,7 +73,7 @@ def save_iv_runinfo(ivrun_info, dir):
     """
     save the run info of iverilog to dir
     """
-    run_info_path = dir + "run_info.txt"
+    run_info_path = os.path.join(dir, "run_info.txt")
     lines = ""
     if ivrun_info[0]:
         lines += "iverilog simulation passed!\n\n"
