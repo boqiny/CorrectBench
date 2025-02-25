@@ -2,7 +2,7 @@
 Description :   The functionality checking of the generated TB, the submodule of Autoline
 Author      :   Ruidi Qiu (r.qiu@tum.de)
 Time        :   2024/7/22 10:36:06
-LastEdited  :   2024/9/17 23:04:53
+LastEdited  :   2025/2/25 22:11:13
 """
 
 import os
@@ -431,6 +431,10 @@ class TaskTBcheck():
         plt.imshow(rgb_image)
         plt.ylabel("RTL index")
         plt.xlabel("Scenario index")
+        current_xticks = np.arange(scenario_matrix.shape[1])
+        plt.xticks(current_xticks, current_xticks + 1)
+        current_yticks = np.arange(scenario_matrix.shape[0])
+        plt.yticks(current_yticks, current_yticks + 1)
         plt.title(f"[{task_id}] - Matrix of RTL-TB Scenario Correctness")
         plt.savefig(saving_path)
         plt.close()
