@@ -65,7 +65,7 @@ This project's config is stored in YAML files under [`/config`](config). You hav
 
 We provided 1 demo for a quick start, you can access them via args:
 
-- quick start single-task demo: `python main.py -c demo`
+- **QUICK START** (single-task demo): `python main.py -c demo`
 
 There are also other full-task preset configs to run the experiments mentioned in the paper. You can check these configs in [`config/configs`](config/configs). If you want to run them, you use the command `python main.py -c` + the config name you want to run. For instance, if you want to run CorrectBench's main experiment in **paper Section IV-B**, you should run the config *config/configs/correctbench.yaml*, then the command will be: `python main.py -c correctbench`.
 
