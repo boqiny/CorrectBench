@@ -2,7 +2,7 @@
 
 ![image](https://img.shields.io/github/license/AutoBench/AutoBench.svg) [![arXiv](https://img.shields.io/badge/arXiv-2411.08510-b31b1b.svg?style=flat)](https://arxiv.org/abs/2411.08510)
 
-<img src="figs/DATE2024_logo_blue_flat.png" width="15%" align=right>
+<img src="figs/DATE2025_logo_blue_shadow.png" width="15%" align=right>
 
 This is the code implementation of paper [***CorrectBench: Automatic Testbench Generation with Functional Self-Correction using LLMs for HDL Design***](https://arxiv.org/abs/2411.08510), which has been accepted by [***Design, Automation and Test in Europe Conference 2025***](https://www.date-conference.com/) as regular paper. This is the next generation of [AutoBench](https://github.com/AutoBench/AutoBench).
 
