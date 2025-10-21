@@ -8,8 +8,8 @@ save:
     log: 
         debug_en: False
 gpt: 
-    model: gpt-4o-2024-08-06
-    rtlgen_model: gpt-4o-2024-08-06
+    model: /home/nvidia/data/models/Qwen3-8B
+    rtlgen_model: /home/nvidia/data/models/Qwen3-8B
 autoline: 
     probset: 
         path: data/HDLBits/HDLBits_data.jsonl

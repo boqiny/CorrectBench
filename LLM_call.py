@@ -49,7 +49,9 @@ PRICING_MODELS = {
     'gpt-3.5-turbo-1106': [0.0010, 0.0020],
     'gpt-3.5-turbo-0613': [0.0015, 0.0020],
     'gpt-3.5-turbo-16k-0613': [0.0030, 0.0040],
-    'gpt-3.5-turbo-0301': [0.0030, 0.0040]
+    'gpt-3.5-turbo-0301': [0.0030, 0.0040],
+    '/home/nvidia/data/models/Qwen3-8B': [0.0, 0.0],
+    'qwen3-8b': [0.0, 0.0]
 }
 
 JSON_MODELS = ["gpt-4-0613", "gpt-4-32k-0613", "gpt-3.5-turbo-0613", "gpt-3.5-turbo-16k-0613"]
@@ -80,7 +82,11 @@ def llm_call(input_messages, model:str, api_key_path = "config/key_API.json", sy
     """
     if isinstance(input_messages, str):
         input_messages = [{"role": "user", "content": input_messages}]
-    if model.startswith("claude"):
+    
+    # Determine provider based on model name
+    if "qwen3" in model.lower() or "qwen" in model.lower():
+        output = gpt_call(input_messages, model, api_key_path, system_message, temperature, json_mode, use_vllm=True)
+    elif model.startswith("claude"):
         output = claude_call(input_messages, model, api_key_path, system_message, temperature, json_mode)
     elif model.startswith("gpt"):
         output = gpt_call(input_messages, model, api_key_path, system_message, temperature, json_mode)
@@ -90,7 +96,7 @@ def llm_call(input_messages, model:str, api_key_path = "config/key_API.json", sy
     return output
 
 
-def gpt_call(input_messages, model, api_key_path, system_message = None, temperature = None, json_mode = False):
+def gpt_call(input_messages, model, api_key_path, system_message = None, temperature = None, json_mode = False, use_vllm = False):
     """
     This func is used to call gpt
     - input:
@@ -108,7 +114,11 @@ def gpt_call(input_messages, model, api_key_path, system_message = None, tempera
     - notes:
         - as for the official response format from gpt, see the end of this file
     """
-    client = enter_api_key(api_key_path)
+    # Initialize client based on use_vllm flag
+    if use_vllm:
+        client = enter_api_key(api_key_path, provider="vllm")
+    else:
+        client = enter_api_key(api_key_path, provider="openai")
     # system message
     has_sysmessage = False
     for message in input_messages:
@@ -282,6 +292,12 @@ def enter_api_key(api_key_path, provider="openai"):
     elif provider == "anthropic":
         key = ls.load_json_dict(api_key_path)["ANTHROPIC_API_KEY"]
         client = Anthropic(api_key=key)
+    elif provider == "vllm":
+        # For vLLM, we use OpenAI client with custom base_url
+        client = OpenAI(
+            api_key="EMPTY",  # vLLM doesn't require API key
+            base_url="http://localhost:8003/v1"  # vLLM server endpoint
+        )
     else:
         raise ValueError("provider %s is not supported."%(provider))
     return client

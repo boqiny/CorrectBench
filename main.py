@@ -13,6 +13,7 @@ import autoline as al
 import iverilog_call as iv
 import getopt
 import sys
+import yaml
 from config import CFG_CUS_PATH
 
 def main(custom_cfg_path: str = CFG_CUS_PATH):
@@ -40,25 +41,62 @@ if __name__ == "__main__":
     # if no command, run the main function main()
     # if -h/--help, print the help message
     # if -c/--config + str, first get the custom config path, then run the main function
-
+    # if -m/--model + str, update model configuration and run
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "hc:", ["help", "config="])
+        opts, args = getopt.getopt(sys.argv[1:], "hc:m:", ["help", "config=", "model="])
     except getopt.GetoptError as err:
         print(err)
         sys.exit(2)
-    if len(opts) == 1:
-        for opt, arg in opts:
-            if opt in ("-h", "--help"):
-                print("Usage: python main.py [-h] [-c <custom_config_path>]")
-                sys.exit(0)
-            elif opt in ("-c", "--config"):
-                config_path = config.get_cfg_path_from_alias(arg)
-                main(config_path)
-                sys.exit(0)
-    elif len(opts) > 1:
-        print("opts are more than 1; Usage: python main.py [-h] [-c <custom_config_path>]")
-        sys.exit(2)
-    else:
-        main()
-        sys.exit(0)
+    
+    config_path = CFG_CUS_PATH
+    model_type = None
+    
+    for opt, arg in opts:
+        if opt in ("-h", "--help"):
+            print("""
+CorrectBench - Automatic Testbench Generation Framework
+
+Usage: python main.py [OPTIONS]
+
+Options:
+  -h, --help              Show this help message
+  -c, --config PATH       Use custom config file (default: config/custom.yaml)
+  -m, --model MODEL       Set model type: 'gpt' or 'qwen' (default: current config)
+
+Examples:
+  python main.py -c demo                    # Run with demo config
+  python main.py -m gpt                     # Use GPT-4o model
+  python main.py -m qwen                    # Use Qwen3-8B model
+  python main.py -c demo -m qwen            # Use demo config with Qwen3-8B
+            """)
+            sys.exit(0)
+        elif opt in ("-c", "--config"):
+            config_path = config.get_cfg_path_from_alias(arg)
+        elif opt in ("-m", "--model"):
+            model_type = arg.lower()
+    
+    # Update model configuration if specified
+    if model_type:
+        # Load and update config
+        with open(config_path, 'r') as f:
+            cfg = yaml.safe_load(f)
+        
+        if model_type == "gpt":
+            cfg['gpt']['model'] = "gpt-4o-2024-08-06"
+            cfg['gpt']['rtlgen_model'] = "gpt-4o-2024-08-06"
+            print("✅ Using GPT-4o model")
+        elif model_type == "qwen":
+            cfg['gpt']['model'] = "/home/nvidia/data/models/Qwen3-8B"
+            cfg['gpt']['rtlgen_model'] = "/home/nvidia/data/models/Qwen3-8B"
+            print("✅ Using Qwen3-8B model")
+        else:
+            print(f"❌ Invalid model: {model_type}. Use 'gpt' or 'qwen'")
+            sys.exit(1)
+        
+        with open(config_path, 'w') as f:
+            yaml.dump(cfg, f, default_flow_style=False)
+    
+    # Run main function
+    main(config_path)
+    sys.exit(0)
