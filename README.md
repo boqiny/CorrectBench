@@ -1,5 +1,19 @@
 # CorrectBench (AutoBench 2.0)
 
+## Usage Example
+
+```
+# Single request (default concurrency=1)
+python main.py -c demo
+
+# For vLLM with dp=8 (8 parallel workers)
+python main.py -m qwen -p 8
+
+# Combine with other options
+python main.py -c demo -m qwen -p 8
+```
+
+
 ![image](https://img.shields.io/github/license/AutoBench/AutoBench.svg) [![arXiv](https://img.shields.io/badge/arXiv-2411.08510-b31b1b.svg?style=flat)](https://arxiv.org/abs/2411.08510)
 
 <img src="figs/DATE2025_logo_blue_shadow.png" width="15%" align=right>

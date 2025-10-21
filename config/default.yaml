@@ -52,6 +52,7 @@ gpt:
         # follow_form: "chat" # 
         one_time_talk: False # will not continue to talk after the first message.
     rtlgen_model: ~ # model used in autoline-3-TBcheck-discriminator, if None, use the same model as gpt.model.
+    concurrency: 1 # parallelism level (1 for single request, 8 for dp=8 vLLM)
 
 ################# iverilog ################
 iverilog:

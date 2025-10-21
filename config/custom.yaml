@@ -10,6 +10,7 @@ save:
 gpt: 
     model: gpt-4o-2024-08-06
     rtlgen_model: gpt-4o-2024-08-06
+    concurrency: 1  # parallelism level (1 for single request, 8 for dp=8 vLLM)
 autoline: 
     probset: 
         path: data/HDLBits/HDLBits_data.jsonl

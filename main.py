@@ -44,13 +44,14 @@ if __name__ == "__main__":
     # if -m/--model + str, update model configuration and run
 
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "hc:m:", ["help", "config=", "model="])
+        opts, args = getopt.getopt(sys.argv[1:], "hc:m:p:", ["help", "config=", "model=", "parallelism="])
     except getopt.GetoptError as err:
         print(err)
         sys.exit(2)
     
     config_path = CFG_CUS_PATH
     model_type = None
+    parallelism = None
     
     for opt, arg in opts:
         if opt in ("-h", "--help"):
@@ -63,18 +64,30 @@ Options:
   -h, --help              Show this help message
   -c, --config PATH       Use custom config file (default: config/custom.yaml)
   -m, --model MODEL       Set model type: 'gpt' or 'qwen' (default: current config)
+  -p, --parallelism N     Set concurrency level for vLLM (default: 1, use 8 for dp=8 vLLM)
 
 Examples:
   python main.py -c demo                    # Run with demo config
   python main.py -m gpt                     # Use GPT-4o model
   python main.py -m qwen                    # Use Qwen3-8B model
   python main.py -c demo -m qwen            # Use demo config with Qwen3-8B
+  python main.py -p 8                       # Use 8 parallel workers (for dp=8 vLLM)
+  python main.py -m qwen -p 8               # Use Qwen3-8B with 8 parallel workers
             """)
             sys.exit(0)
         elif opt in ("-c", "--config"):
             config_path = config.get_cfg_path_from_alias(arg)
         elif opt in ("-m", "--model"):
             model_type = arg.lower()
+        elif opt in ("-p", "--parallelism"):
+            try:
+                parallelism = int(arg)
+                if parallelism < 1:
+                    print(f"❌ Invalid parallelism: {parallelism}. Must be >= 1")
+                    sys.exit(1)
+            except ValueError:
+                print(f"❌ Invalid parallelism: {arg}. Must be an integer")
+                sys.exit(1)
     
     # Update model configuration if specified
     if model_type:
@@ -93,6 +106,21 @@ Examples:
         else:
             print(f"❌ Invalid model: {model_type}. Use 'gpt' or 'qwen'")
             sys.exit(1)
+        
+        with open(config_path, 'w') as f:
+            yaml.dump(cfg, f, default_flow_style=False)
+    
+    # Update parallelism configuration if specified
+    if parallelism is not None:
+        # Load and update config
+        with open(config_path, 'r') as f:
+            cfg = yaml.safe_load(f)
+        
+        # Add or update concurrency in gpt section
+        if 'gpt' not in cfg:
+            cfg['gpt'] = {}
+        cfg['gpt']['concurrency'] = parallelism
+        print(f"✅ Using parallelism level: {parallelism}")
         
         with open(config_path, 'w') as f:
             yaml.dump(cfg, f, default_flow_style=False)

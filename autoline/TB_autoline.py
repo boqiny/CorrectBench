@@ -5,6 +5,8 @@ Time        :   2024/7/24 11:44:15
 LastEdited  :   2024/9/1 10:32:18
 """
 import os
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import analyze as al
 import loader_saver as ls
 from config import Config
@@ -38,18 +40,42 @@ class AutoLine():
         self.run_info_path = os.path.join(config.save.root, "Chatbench_RunInfo.json")
         self.run_info = []
         self.analyzer_en = (config.autoline.onlyrun is None) or (config.autoline.onlyrun == "TBgensimeval") # only run the analyzer when not in the onlyrun mode (partial run)
+        # concurrency for dispatching tasks (default 1 for single request, 8 for dp=8 vLLM)
+        try:
+            # prefer config.gpt.concurrency or config.run.concurrency if available
+            self.max_concurrency = int(getattr(self.config.gpt, "concurrency", getattr(self.config.run, "concurrency", 1)))
+        except Exception:
+            self.max_concurrency = 1
+        self._run_info_lock = threading.Lock()
 
     def run(self):
-        for idx, probdata_single in enumerate(self.probset.data):
+        def run_single(probdata_single, idx):
             task_id = probdata_single["task_id"]
             self.logger.info("")
             self.logger.info("######################### task %d/%d [%s] #########################" % (idx+1, self.probset.num, task_id))
-            # run_info_single = pipeline_one_prob(probdata_single, self.config)
             one_task = AutoLine_Task(probdata_single, self.config)
             run_info_single = one_task.run()
-            self.run_info.append(run_info_single)
-            # save run info: (write to file every iteration and will overwrite the previous one)
-            save_dict_json_form(self.run_info, self.run_info_path)
+            with self._run_info_lock:
+                self.run_info.append(run_info_single)
+                save_dict_json_form(self.run_info, self.run_info_path)
+            return run_info_single
+
+        total = self.probset.num
+        if total <= 0:
+            return
+        # Bounded parallelism: keep up to self.max_concurrency tasks in-flight
+        with ThreadPoolExecutor(max_workers=max(1, self.max_concurrency)) as executor:
+            futures = {}
+            # prime the pool with first window
+            initial = min(self.max_concurrency, total)
+            for i in range(initial):
+                futures[executor.submit(run_single, self.probset.data[i], i)] = i
+            next_idx = initial
+            for future in as_completed(futures):
+                # as one finishes, schedule next if any remain
+                if next_idx < total:
+                    futures[executor.submit(run_single, self.probset.data[next_idx], next_idx)] = next_idx
+                    next_idx += 1
         if self.analyzer_en:
             self.run_analyzer()
 

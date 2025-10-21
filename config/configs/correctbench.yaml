@@ -1,26 +1,27 @@
-run: 
-    mode: autoline
-save: 
-    en: True
-    pub: 
-        prefix: "NO"
-        subdir: Main_Results/CorrectBench
-    log: 
-        debug_en: False
-gpt: 
-    model: /home/nvidia/data/models/Qwen3-8B
-    rtlgen_model: /home/nvidia/data/models/Qwen3-8B
-autoline: 
-    probset: 
-        path: data/HDLBits/HDLBits_data.jsonl
-        mutant_path: data/HDLBits/HDLBits_data_mutants.jsonl
-        more_info_paths: ['data/HDLBits/HDLBits_data_RTL_4o_20.jsonl']
-    promptscript: pychecker
-    timeout: 40
-    save_compile: False
-    debug: 
-        max: 3
-    itermax: 10
-    update_desc: False
-    TBcheck: 
-        discrim_mode: col_70_wrong_row_25_correct
+autoline:
+  TBcheck:
+    discrim_mode: col_70_wrong_row_25_correct
+  debug:
+    max: 3
+  itermax: 10
+  probset:
+    more_info_paths:
+    - data/HDLBits/HDLBits_data_RTL_4o_20.jsonl
+    mutant_path: data/HDLBits/HDLBits_data_mutants.jsonl
+    path: data/HDLBits/HDLBits_data.jsonl
+  promptscript: pychecker
+  save_compile: false
+  timeout: 40
+  update_desc: false
+gpt:
+  model: /home/nvidia/data/models/Qwen3-8B
+  rtlgen_model: /home/nvidia/data/models/Qwen3-8B
+run:
+  mode: autoline
+save:
+  en: true
+  log:
+    debug_en: false
+  pub:
+    prefix: 'NO'
+    subdir: Main_Results/CorrectBench
