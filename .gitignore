@@ -1,0 +1,79 @@
+# CorrectBench Generated Files
+# ===========================
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Generated simulation files
+*.vvp
+*.vcd
+*.log
+run_info*.txt
+run_info*.py
+vlist.txt
+TBout.txt
+
+# Generated testbench files
+*_tb.v
+*_tb.py
+*.v
+!demo/shift18/final_TB.v
+!demo/shift18/final_TB.py
+
+# Generated data files
+*.csv
+*.png
+*.jpg
+*.jpeg
+scenario_matrix.*
+
+# Generated conversation files
+conversation.txt
+
+# Generated saves directory (experiment results)
+saves/
+!saves/.gitkeep
+
+# Generated demo files (keep only the final results)
+demo/*/1_*_TBgen/
+demo/*/1_*_TBsim/
+demo/*/1_*_TBcheck/
+demo/*/1_*_TBeval/
+demo/*/code_comparison/
+demo/*/run_info*.json
+demo/*/task_log.log
+demo/*/run_info*.txt
+
+# Keep only essential demo files
+!demo/shift18/final_TB.v
+!demo/shift18/final_TB.py
+!demo/shift18/run_info_short.json
+!demo/shift18/run_info.json
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# API keys (security)
+config/key_API.json
+
+# Generated logs
+*.log
+logs/
+
+# Generated messages
+messages/
+
+# Generated iverilog files
+ivcode_*/
